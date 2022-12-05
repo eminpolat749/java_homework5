@@ -1,0 +1,36 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{
+		System.out.println(NumberUtil.e());
+	}
+}
+
+class NumberUtil {
+	public static double e()
+	{
+		double result = 2;
+		
+		for (int i = 2; i < 10; ++i)
+			result += 1. / factorial(i);		
+		
+		return result;
+	}
+	
+	public static long factorial(int val)
+	{
+		long result = 1;
+		
+		for (int i = 2; i <= val; ++i)
+			result *= i;
+		
+		return result;
+	}
+}
+
+
+
+
+
+
