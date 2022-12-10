@@ -1,0 +1,46 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{	
+		IsPerfectTest.run();
+	}
+}
+
+class IsPerfectTest {
+	public static void run()
+	{
+		for (int i = 1000; i <= 9999; ++i)
+			if (NumberUtil.isPerfect(i))
+				System.out.printf("%d sayisi mükemmel sayıdır%n", i);
+				
+	}
+}
+
+class NumberUtil {
+	public static boolean isPerfect(int val)
+	{
+		if (val == sumFactors(val))
+			return true;
+		
+		return false;
+		
+	}
+	public static int sumFactors(int val)
+	{
+		if (val <= 0)
+			return -1;
+		
+		int total = 1;
+		int a = 2;
+		
+		while (a < val) {
+			if (val % a == 0)
+				total += a;
+			
+			++a;
+		}
+		
+		return total;
+	}
+}
