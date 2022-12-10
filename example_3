@@ -1,0 +1,52 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{	
+		AreFriendsTest.run();
+	}
+}
+
+class AreFriendsTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		System.out.print("İki sayı giriniz:");
+		int val1 = kb.nextInt();
+		int val2 = kb.nextInt();
+		
+		if (NumberUtil.areFriends(val1, val2))
+			System.out.printf("%d sayisi ile %d sayisi arkadaştır%n", val1, val2);
+		else
+			System.out.printf("%d sayisi ile %d sayisi arkadaş değildir%n", val1, val2);		
+	}
+}
+
+class NumberUtil {
+	public static boolean areFriends(int a, int b)
+	{
+		if ((sumFactors(a) == b) && (sumFactors(b) == a))
+			return true;
+		
+		return false;
+		
+	}
+	public static int sumFactors(int val)
+	{
+		if (val <= 0)
+			return -1;
+		
+		int total = 1;
+		int a = 2;
+		
+		while (a < val) {
+			if (val % a == 0)
+				total += a;
+			
+			++a;
+		}
+		
+		return total;
+	}
+}
