@@ -2,7 +2,7 @@ package csd;
 
 class App {
 	public static void main(String [] args)
-	{	
+	{
 		SumFactorsTest.run();
 	}
 }
@@ -12,29 +12,30 @@ class SumFactorsTest {
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);
 		
-		System.out.print("Bir sayı giriniz:");
-		int val = kb.nextInt();
-		
-		System.out.printf("%d sayısının çarpanlarının toplamı:%d%n", val, NumberUtil.sumFactors(val));
+		for (;;) {
+			System.out.printf("Bir sayı giriniz:");
+			int val = Integer.parseInt(kb.nextLine());
+			
+			if (val == 0)
+				break;
+			
+			System.out.printf("%d sayısının kendisi hariç çarpanları toplamı: %d%n", val, NumberUtil.sumFactors(val));
+		}
 	}
 }
 
 class NumberUtil {
 	public static int sumFactors(int val)
 	{
-		if (val <= 0)
-			return -1;
+		int result = 1;
+		int half = val / 2;
 		
-		int total = 1;
-		int a = 2;
+		for (int i = 2; i <= half; ++i)
+			result += val % i == 0 ? i : 0;
 		
-		while (a < val) {
-			if (val % a == 0)
-				total += a;
-			
-			++a;
-		}
-		
-		return total;
+		return result;		
 	}
 }
+
+
+
