@@ -2,7 +2,7 @@ package csd;
 
 class App {
 	public static void main(String [] args)
-	{	
+	{
 		AreFriendsTest.run();
 	}
 }
@@ -10,43 +10,31 @@ class App {
 class AreFriendsTest {
 	public static void run()
 	{
-		java.util.Scanner kb = new java.util.Scanner(System.in);
+		System.out.println("3 basamaklı arkadaş sayılar:");
 		
-		System.out.print("İki sayı giriniz:");
-		int val1 = kb.nextInt();
-		int val2 = kb.nextInt();
-		
-		if (NumberUtil.areFriends(val1, val2))
-			System.out.printf("%d sayisi ile %d sayisi arkadaştır%n", val1, val2);
-		else
-			System.out.printf("%d sayisi ile %d sayisi arkadaş değildir%n", val1, val2);		
+		for (int i = 100; i <= 999; ++i)
+			for (int j = i + 1; j <= 999; ++j)
+				if (NumberUtil.areFriends(i, j))
+					System.out.printf("(%d, %d)%n", i, j);
 	}
 }
 
 class NumberUtil {
 	public static boolean areFriends(int a, int b)
 	{
-		if ((sumFactors(a) == b) && (sumFactors(b) == a))
-			return true;
-		
-		return false;
-		
+		return sumFactors(a) == b && sumFactors(b) == a;
 	}
 	public static int sumFactors(int val)
 	{
-		if (val <= 0)
-			return -1;
+		int result = 1;
+		int half = val / 2;
 		
-		int total = 1;
-		int a = 2;
+		for (int i = 2; i <= half; ++i)
+			result += val % i == 0 ? i : 0;
 		
-		while (a < val) {
-			if (val % a == 0)
-				total += a;
-			
-			++a;
-		}
-		
-		return total;
+		return result;		
 	}
 }
+
+
+
